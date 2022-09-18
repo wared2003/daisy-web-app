@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import { BarcodeFormat } from '@zxing/library';
 
 @Component({
   selector: 'app-add-item-form',
@@ -12,6 +13,7 @@ export class AddItemFormComponent implements OnInit {
   isLinear = false;
   firstFormGroup!: UntypedFormGroup;
   secondFormGroup!: UntypedFormGroup;
+  allowedFormats: BarcodeFormat[] = [ BarcodeFormat.QR_CODE, BarcodeFormat.EAN_13, BarcodeFormat.CODE_128, BarcodeFormat.CODABAR];
 
   constructor(public dialogRef: MatDialogRef<AddItemFormComponent>, private _formBuilder: UntypedFormBuilder) { }
 
@@ -27,6 +29,8 @@ export class AddItemFormComponent implements OnInit {
   }
 
   onScanSuccess(e: any){
-    console.log(e)
+    if (e){
+      console.log(e)
+    }
   }
 }

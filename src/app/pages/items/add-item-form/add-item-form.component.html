@@ -34,7 +34,7 @@
     </div>
   </mat-step>
   <mat-step>
-    <zxing-scanner  #scanner (scanSuccess)="onScanSuccess($event)">
+    <zxing-scanner [formats]="allowedFormats" #scanner (scanComplete)="onScanSuccess($event)" (scanSuccess)="onScanSuccess($event)">
     </zxing-scanner>
   </mat-step>
 </mat-stepper>
