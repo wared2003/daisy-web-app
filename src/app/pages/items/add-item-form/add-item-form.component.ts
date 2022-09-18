@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-item-form',
@@ -10,10 +10,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AddItemFormComponent implements OnInit {
 
   isLinear = false;
-  firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
+  firstFormGroup!: UntypedFormGroup;
+  secondFormGroup!: UntypedFormGroup;
 
-  constructor(public dialogRef: MatDialogRef<AddItemFormComponent>, private _formBuilder: FormBuilder) { }
+  constructor(public dialogRef: MatDialogRef<AddItemFormComponent>, private _formBuilder: UntypedFormBuilder) { }
 
 
 
