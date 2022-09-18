@@ -12,12 +12,21 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
 import { ItemsComponent } from './pages/items/items.component';
 import { ItemCardComponent } from './pages/items/item-card/item-card.component';
+import { AddItemFormComponent } from './pages/items/add-item-form/add-item-form.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/dialog";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemsComponent,
     ItemCardComponent,
+    AddItemFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +37,15 @@ import { ItemCardComponent } from './pages/items/item-card/item-card.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    ZXingScannerModule
   ],
-  providers: [],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

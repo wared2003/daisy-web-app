@@ -4,7 +4,7 @@ import { ItemsComponent } from "./pages/items/items.component";
 
 const routes: Routes = [
   { path: '', component: ItemsComponent},
-  { path: 'items', component: ItemsComponent }
+  { path: 'items', component: ItemsComponent },
 ];
 
 @NgModule({
