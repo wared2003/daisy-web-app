@@ -30,8 +30,7 @@ export class AddItemFormComponent implements OnInit {
 
   onScanSuccess(e: any){
     if (e){
-      console.log(e)
-      this.dialogRef.close();
+      this.dialogRef.close(e);
     }
   }
 }
