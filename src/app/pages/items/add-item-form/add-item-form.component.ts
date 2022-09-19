@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from "@angular/material/dialog";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import { BarcodeFormat } from '@zxing/library';
+import { ZXingScannerModule } from "@zxing/ngx-scanner";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { MatChipInputEvent } from "@angular/material/chips";
 
 @Component({
   selector: 'app-add-item-form',
@@ -14,6 +17,10 @@ export class AddItemFormComponent implements OnInit {
   firstFormGroup!: UntypedFormGroup;
   secondFormGroup!: UntypedFormGroup;
   allowedFormats: BarcodeFormat[] = [ BarcodeFormat.QR_CODE, BarcodeFormat.EAN_13, BarcodeFormat.CODE_128, BarcodeFormat.CODABAR];
+  itemBarCode!: any;
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  tags: Array<string> = [];
 
   constructor(public dialogRef: MatDialogRef<AddItemFormComponent>, private _formBuilder: UntypedFormBuilder) { }
 
@@ -30,7 +37,32 @@ export class AddItemFormComponent implements OnInit {
 
   onScanSuccess(e: any){
     if (e){
-      this.dialogRef.close(e);
+      if (e.text){
+        this.itemBarCode = e;
+        console.log(e)
+      }
+    }
+  }
+
+
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.tags.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(tag: string): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
     }
   }
 }

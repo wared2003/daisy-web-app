@@ -19,6 +19,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MatChipsModule } from "@angular/material/chips";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    MatChipsModule
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
