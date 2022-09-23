@@ -20,6 +20,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MatChipsModule } from "@angular/material/chips";
+import { ImagekitioAngularModule } from "imagekitio-angular";
+import { environment } from "../../dev.environment";
 
 
 @NgModule({
@@ -30,6 +32,10 @@ import { MatChipsModule } from "@angular/material/chips";
     AddItemFormComponent,
   ],
   imports: [
+    ImagekitioAngularModule.forRoot({
+      publicKey: environment.ik_publicKey,
+      urlEndpoint: environment.ik_urlEndpoint
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

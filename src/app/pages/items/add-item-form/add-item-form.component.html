@@ -3,18 +3,18 @@
     <form [formGroup]="firstFormGroup" class="first-form">
       <ng-template  class="info-header" matStepLabel>Informations de l'item</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        <mat-label>nom du produit</mat-label>
+        <input matInput placeholder="compresse 100 * 5, " formControlName="firstCtrl" required>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Favorite Fruits</mat-label>
+        <mat-label>categorie tag</mat-label>
         <mat-chip-list #chipList aria-label="Fruit selection">
           <mat-chip
             *ngFor="let tag of tags"
             (removed)="remove(tag)">
             {{tag}}
             <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
+              <mat-icon>annuler</mat-icon>
             </button>
           </mat-chip>
           <input
@@ -25,6 +25,8 @@
             (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
       </mat-form-field>
+
+      <button class="upload-btn" mat-flat-button color="accent"> ajouter une image<ik-upload  fileName="daisy-dev-item-upload"></ik-upload></button>
       <div>
         <button mat-flat-button color="accent" matStepperNext>Next</button>
       </div>
@@ -39,10 +41,10 @@
     <p *ngIf="itemBarCode">{{itemBarCode}}</p>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>terminer</ng-template>
+    <p>item ajouté</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious>retour</button>
       <button color="accent" mat-flat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
