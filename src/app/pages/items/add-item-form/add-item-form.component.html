@@ -1,20 +1,22 @@
 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+
+
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup" class="first-form">
       <ng-template  class="info-header" matStepLabel>Informations de l'item</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>nom du produit</mat-label>
+        <mat-label>nom de l'item</mat-label>
         <input matInput placeholder="compresse 100 * 5, " formControlName="firstCtrl" required>
       </mat-form-field>
       <mat-form-field>
         <mat-label>categorie tag</mat-label>
-        <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip-list #chipList>
           <mat-chip
             *ngFor="let tag of tags"
             (removed)="remove(tag)">
             {{tag}}
             <button matChipRemove>
-              <mat-icon>annuler</mat-icon>
+              <mat-icon>clear</mat-icon>
             </button>
           </mat-chip>
           <input
@@ -32,20 +34,32 @@
       </div>
     </form>
   </mat-step>
+
+
   <mat-step [stepControl]="secondFormGroup">
     <ng-template matStepLabel>code bare</ng-template>
     <div class="scanner-container">
       <zxing-scanner class="scanner" [formats]="allowedFormats" #scanner (scanComplete)="onScanSuccess($event)" (scanSuccess)="onScanSuccess($event)">
       </zxing-scanner>
     </div>
-    <p *ngIf="itemBarCode">{{itemBarCode}}</p>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>terminer</ng-template>
-    <p>item ajouté</p>
+    <div class="center-content">
+      <mat-form-field class="mx-auto ref-input" appearance="fill">
+        <mat-label>ref scanner ou complété</mat-label>
+        <input matInput placeholder="kel218ieoP"  formControlName="firstCtrl" required [value]="itemBarCode ? itemBarCode : '' ">
+      </mat-form-field>
+    </div>
+
     <div>
       <button mat-button matStepperPrevious>retour</button>
-      <button color="accent" mat-flat-button (click)="stepper.reset()">Reset</button>
+      <button mat-flat-button color="accent" matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Terminer</ng-template>
+    <div class="submit-btn">
+      <button color="accent" mat-flat-button (click)="dialogRef.close()">Ajouter L'item</button>
     </div>
   </mat-step>
   <mat-step>
